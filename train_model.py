@@ -21,7 +21,9 @@ use_cuda = False
 
 # Transformation to tensor and normalization
 transform = transforms.Compose(
-    [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    [transforms.ToTensor(),
+     transforms.Resize(150, 150),
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
 )
 
 # Download the training set
