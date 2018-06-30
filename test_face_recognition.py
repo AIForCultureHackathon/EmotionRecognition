@@ -30,6 +30,9 @@ face_encodings = []
 face_names = []
 frame_number = 0
 
+# Index
+index = 0
+
 # For each frame
 while True:
     # Grab a single frame of video
@@ -48,10 +51,9 @@ while True:
     face_locations = face_recognition.face_locations(rgb_frame)
 
     # Label the results
-    index = 0
     for (top, right, bottom, left) in face_locations:
         # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+        cv2.rectangle(frame, (left - 10, top - 10), (right + 10, bottom + 10), (0, 0, 255), 2)
 
         # Face
         face_image = frame[top:bottom, left:right]
