@@ -4,12 +4,14 @@
 import face_recognition
 import cv2
 import argparse
+import os
 
 
 # Arguments
 parser = argparse.ArgumentParser(u"Face detection")
 parser.add_argument("--movie", type=str, required=True)
 parser.add_argument("--output", type=str, required=True)
+parser.add_argument("--faces-dir", type=str, required=True)
 args = parser.parse_args()
 
 # Input movie
@@ -28,6 +30,7 @@ face_encodings = []
 face_names = []
 frame_number = 0
 
+# For each frame
 while True:
     # Grab a single frame of video
     ret, frame = input_movie.read()
@@ -45,13 +48,19 @@ while True:
     face_locations = face_recognition.face_locations(rgb_frame)
 
     # Label the results
+    index = 0
     for (top, right, bottom, left) in face_locations:
         # Draw a box around the face
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
 
-        # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 25), (right, bottom), (0, 0, 255), cv2.FILLED)
-        font = cv2.FONT_HERSHEY_DUPLEX
+        # Face
+        face_image = frame[top:bottom, left:right]
+
+        # Save image
+        cv2.imwrite(os.path.join(args.faces_dir, "face" + str(index) + ".jpg"), face_image)
+
+        # Next face
+        index += 1
     # end for
 
     # Write the resulting image to the output video file
