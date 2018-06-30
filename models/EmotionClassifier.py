@@ -42,7 +42,7 @@ class EmotionClassifier(nn.Module):
         x = x.view(-1, 16 * 4 * 4)
         x = F.relu(self.linear_layer1(x))
         x = F.relu(self.linear_layer2(x))
-        return F.log_softmax(x)
+        return F.log_softmax(x, dim=0)
     # end forward
 
 # end Net
