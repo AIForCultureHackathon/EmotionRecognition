@@ -59,7 +59,7 @@ while True:
         face_image = frame[top:bottom, left:right]
 
         # Save image
-        cv2.imwrite(os.path.join(args.faces_dir, "face" + str(index) + ".jpg"), face_image)
+        # cv2.imwrite(os.path.join(args.faces_dir, "face" + str(index) + ".jpg"), face_image)
 
         # Next face
         index += 1
