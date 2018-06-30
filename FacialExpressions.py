@@ -74,7 +74,7 @@ class FacialExpressions(Dataset):
         # For each row
         for row in csv_reader:
             self.truth[os.path.join(images_path, row[1])] = str(row[2].lower())
-            # end for
+        # end for
 
         # For each files
         for file_name in os.listdir(images_path):
@@ -116,7 +116,7 @@ class FacialExpressions(Dataset):
 
         # Truth
         im_truth = self.truth[self.images[idx]]
-
+        print(type(im))
         return self.transform(im), self.classes[im_truth]
     # end __getitem__
 
