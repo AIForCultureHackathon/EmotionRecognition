@@ -117,7 +117,7 @@ class FacialExpressions(Dataset):
         # Truth
         im_truth = self.truth[self.images[idx]]
         print(type(im))
-        return self.transform(im), torch.LongTensor([self.classes[im_truth]])
+        return self.transform(im)
     # end __getitem__
 
 # end FacialExpressions
