@@ -19,8 +19,8 @@ input_movie = cv2.VideoCapture(args.movie)
 length = int(input_movie.get(cv2.CAP_PROP_FRAME_COUNT))
 
 # Create an output movie file
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-output_movie = cv2.VideoWriter('output.avi', fourcc, 25, (596, 336))
+fourcc = cv2.VideoWriter_fourcc(*'mpeg')
+output_movie = cv2.VideoWriter(args.output, fourcc, 25, (596, 336))
 
 # Initialize some variables
 face_locations = []
