@@ -56,18 +56,23 @@ while True:
         cv2.rectangle(frame, (left - 10, top - 10), (right + 10, bottom + 10), (0, 0, 255), 2)
 
         # Face
-        face_image = frame[top:bottom, left:right]
+        # face_image = frame[top:bottom, left:right]
 
         # Save image
         # cv2.imwrite(os.path.join(args.faces_dir, "face" + str(index) + ".jpg"), face_image)
 
         # Next face
-        index += 1
+        # index += 1
     # end for
 
     # Write the resulting image to the output video file
     print("Writing frame {} / {}".format(frame_number, length))
     output_movie.write(frame)
+
+    index += 1
+    if index > 500:
+        break
+    # end if
 # end while
 
 # All done!
