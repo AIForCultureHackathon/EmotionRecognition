@@ -174,7 +174,9 @@ while True:
             em = classes[c]
             em_prob = probs_t[0, c]
             y = args.height - em_prob * 20.0 - 1.0
-            cv2.circle(frame, (x, y), 1, colors[em], thickness=1)
+            if x > 0:
+                cv2.circle(frame, (x, y), 1, colors[em], thickness=1)
+            # end if
         # end for
         x -= 1
 
