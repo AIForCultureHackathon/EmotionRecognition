@@ -47,8 +47,9 @@ model.load_state_dict(torch.load(open(args.model, 'rb')))
 
 # Transformation to tensor and normalization
 transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    [transforms.ToTensor()
+     #transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ]
 )
 
 # For each frame
@@ -99,9 +100,6 @@ while True:
         # Transform
         face_tensor = transform(face_image)
         print(face_tensor.size())
-        print(face_tensor[0, 0, 0])
-        print(face_tensor[1, 0, 0])
-        print(face_tensor[2, 0, 0])
         exit()
 
         # Draw a box around the face
