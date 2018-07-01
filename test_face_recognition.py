@@ -114,9 +114,10 @@ while True:
 
         # Predict emotion
         _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
-        print(predicted)
-        print(classes[predicted[0]])
-        exit()
+        predicted_emotion = classes[predicted[0]]
+
+        print(predicted_emotion)
+
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
         cv2.rectangle(
