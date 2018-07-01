@@ -173,7 +173,7 @@ while True:
         for c in range(0, 8):
             em = classes[c]
             em_prob = probs_t[0, c]
-            y = args.height - em_prob * 20.0 - 1.0
+            y = args.height - int(em_prob * 20.0) - 1.0
             if x > 0:
                 print(x)
                 print(y)
