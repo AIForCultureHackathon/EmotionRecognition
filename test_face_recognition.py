@@ -44,9 +44,9 @@ while True:
     ret, frame = input_movie.read()
 
     # Quit when the input video file ends
-    if not ret:
+    """if not ret:
         break
-    # end if
+    # end if"""
 
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_frame = frame[:, :, ::-1]
@@ -71,13 +71,13 @@ while True:
 
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
-        cv2.rectangle(
+        """cv2.rectangle(
             frame,
             (int(face_center[0] - biggest_dim / 2.0), int(face_center[1] - biggest_dim / 2.0)),
             (int(face_center[0] + biggest_dim / 2.0), int(face_center[1] + biggest_dim / 2.0)),
             (0, 0, 255),
             2
-        )
+        )"""
 
         # Face
         # face_image = frame[top:bottom, left:right]
