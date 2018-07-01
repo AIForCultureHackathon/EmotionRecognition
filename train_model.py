@@ -158,10 +158,7 @@ for epoch in range(10000):
         test_accuracy
         )
     )
-    print(test_accuracy)
-    print(best_acc)
-    print(epoch)
-    print(bootstrap)
+
     # Save
     if test_accuracy > best_acc and epoch > bootstrap:
         print(u"Saving model...")
