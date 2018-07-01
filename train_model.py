@@ -146,7 +146,7 @@ for epoch in range(10000):
     # end for
 
     # Accuracy
-    train_accuracy = 100.0 * success / total
+    train_accuracy = 100.0 * train_success / train_total
     test_accuracy = 100.0 * success / total
 
     # Print average loss
