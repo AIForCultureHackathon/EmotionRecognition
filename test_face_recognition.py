@@ -108,6 +108,7 @@ while True:
         face_image = frame[face_top:face_bottom, face_left:face_right]
 
         # Resize to 150x150
+        print(face_image.shape)
         face_image = cv2.resize(face_image, (150, 150))
 
         # Grayscale
