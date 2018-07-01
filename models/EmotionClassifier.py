@@ -33,7 +33,9 @@ class EmotionClassifier(nn.Module):
         :param x:
         :return:
         """
+        print(x.size())
         x = self.conv_layer1(x)
+        print(x.size())
         x = F.relu(x)
         x = self.pool(x)
         x = self.conv_layer2(x)
