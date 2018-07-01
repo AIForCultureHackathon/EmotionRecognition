@@ -89,6 +89,13 @@ while True:
         face_left = int(face_center[0] - biggest_dim / 2.0)
         face_right = int(face_center[0] + biggest_dim / 2.0)
 
+        # Face
+        face_image = frame[face_top:face_bottom, face_left:face_right]
+
+        # Resize to 150x150
+        cv2.resize(face_image, (150, 150))
+        cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
+
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
         cv2.rectangle(
@@ -99,13 +106,6 @@ while True:
             2
         )
 
-        # Face
-        face_image = frame[face_top:face_bottom, face_left:face_right]
-
-        # Resize to 150x150
-        cv2.resize(face_image, (150, 150))
-
-        cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
         face_id += 1
     # end for
 
