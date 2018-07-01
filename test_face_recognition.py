@@ -43,9 +43,9 @@ while True:
     ret, frame = input_movie.read()
 
     # Quit when the input video file ends
-    """if not ret:
+    if not ret:
         break
-    # end if"""
+    # end if
 
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_frame = frame[:, :, ::-1]
