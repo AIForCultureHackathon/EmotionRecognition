@@ -100,10 +100,16 @@ while True:
 
         # Shape
         face_image.shape = (150, 150, 1)
-        print(face_image.shape)
+
         # Transform
         face_tensor = transform(face_image)
-        print(face_tensor.size())
+
+        # Add batch dim
+        face_tensor = face_tensor.view(1, 1, 150, 150)
+
+        # Predict emotion
+        predicted = model(face_tensor)
+        print(predicted)
         exit()
 
         # Draw a box around the face
