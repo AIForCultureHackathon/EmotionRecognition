@@ -4,7 +4,9 @@
 import face_recognition
 import cv2
 import argparse
-import os
+from models import EmotionClassifier
+import torchvision.transforms as transforms
+import torch
 
 
 # Arguments
@@ -37,6 +39,18 @@ frame_number = 0
 # Index
 index = 0
 
+# Create model
+model = EmotionClassifier()
+
+# Load model
+model.load_state_dict(torch.load(open(args.model, 'rb')))
+
+# Transformation to tensor and normalization
+transform = transforms.Compose(
+    [transforms.ToTensor(),
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+)
+
 # For each frame
 while True:
     # Grab a single frame of video
@@ -54,6 +68,7 @@ while True:
     face_locations = face_recognition.face_locations(rgb_frame)
 
     # Label the results
+    face_id = 0
     for (top, right, bottom, left) in face_locations:
         # Face size
         face_size = (right - left, bottom - top)
@@ -86,7 +101,12 @@ while True:
 
         # Face
         face_image = frame[face_top:face_bottom, face_left:face_right]
-        print(type(face_image))
+
+        # Resize to 150x150
+        cv2.resize(face_image, (150, 150))
+
+        cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
+        face_id += 1
     # end for
 
     # Write the resulting image to the output video file
