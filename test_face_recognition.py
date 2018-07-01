@@ -6,6 +6,7 @@ import cv2
 import argparse
 from models import EmotionClassifier
 import torchvision.transforms as transforms
+from torch.autograd import Variable
 import torch
 
 
@@ -108,7 +109,7 @@ while True:
         face_tensor = face_tensor.view(1, 1, 150, 150)
 
         # Predict emotion
-        predicted = model(face_tensor)
+        predicted = model(Variable(face_tensor))
         print(predicted)
         exit()
 
