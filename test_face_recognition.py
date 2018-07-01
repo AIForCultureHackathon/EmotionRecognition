@@ -10,6 +10,10 @@ from torch.autograd import Variable
 import torch
 
 
+# Classes
+classes = ('neutral', 'happiness', 'surprise', 'anger', 'sadness', 'disgust', 'fear', 'contempt')
+
+
 # Arguments
 parser = argparse.ArgumentParser(u"Face detection")
 parser.add_argument("--movie", type=str, required=True)
@@ -109,10 +113,9 @@ while True:
         face_tensor = face_tensor.view(1, 1, 150, 150)
 
         # Predict emotion
-        predicted = model(Variable(face_tensor))
-        print(predicted)
+        predicted = torch.max(model(Variable(face_tensor)).data, 1)
+        print(classes[predicted])
         exit()
-
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
         cv2.rectangle(
