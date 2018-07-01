@@ -1,2 +1,2 @@
 
-from EmotionClassifier import EmotionClassifier
+from .EmotionClassifier import EmotionClassifier

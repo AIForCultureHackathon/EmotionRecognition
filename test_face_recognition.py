@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(u"Face detection")
 parser.add_argument("--movie", type=str, required=True)
 parser.add_argument("--output", type=str, required=True)
 parser.add_argument("--faces-dir", type=str, required=True)
+parser.add_argument("--model", type=str, required=False)
 args = parser.parse_args()
 
 # Input movie
@@ -52,8 +53,28 @@ while True:
 
     # Label the results
     for (top, right, bottom, left) in face_locations:
+        # Face size
+        face_size = (right - left, bottom - top)
+
+        # Get the center of the face
+        face_center = (left + face_size[0], top + face_size[0])
+
+        # Biggest dim
+        if face_size[0] > face_size[1]:
+            biggest_dim = face_size[0]
+        else:
+            biggest_dim = face_size[1]
+        # end if
+
         # Draw a box around the face
-        cv2.rectangle(frame, (left - 10, top - 10), (right + 10, bottom + 10), (0, 0, 255), 2)
+        cv2.ellipse(frame, face_center, (10, 10), 360, (0, 0, 255))
+        cv2.rectangle(
+            frame,
+            (face_center[0] - biggest_dim / 2.0, face_center[1] - biggest_dim / 2.0),
+            (face_center[0] + biggest_dim / 2.0, face_center[1] + biggest_dim / 2.0),
+            (0, 0, 255),
+            2
+        )
 
         # Face
         # face_image = frame[top:bottom, left:right]
