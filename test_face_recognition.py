@@ -72,4 +72,5 @@ while True:
 
 # All done!
 input_movie.release()
+output_movie.release()
 cv2.destroyAllWindows()
