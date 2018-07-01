@@ -71,6 +71,8 @@ for epoch in range(10000):
     average_test_loss = 0.0
 
     # Iterate over batches
+    train_success = 0
+    train_total = 0
     for i, data in enumerate(trainloader, 0):
         # Get the inputs and labels
         inputs, labels = data
@@ -102,6 +104,12 @@ for epoch in range(10000):
 
         # Take the max as predicted
         _, predicted = torch.max(outputs.data, 1)
+
+        # Add to total
+        train_total += labels.size(0)
+
+        # Add correctly classified images
+        train_success += (predicted == labels.data).sum()
     # end for
 
     # Test model on test set
@@ -137,19 +145,27 @@ for epoch in range(10000):
         success += (predicted == labels.data).sum()
     # end for
 
+    # Accuracy
+    train_accuracy = 100.0 * success / total
+    test_accuracy = 100.0 * success / total
+
     # Print average loss
-    print(u"Epoch {}, average loss {}, test loss {}, test accuracy {}".format(
+    print(u"Epoch {}, average loss {}, train accuracy {}, test loss {}, test accuracy {}".format(
         epoch,
         average_train_loss / n_batches,
+        train_accuracy,
         average_test_loss / n_batches,
-        100.0 * success / total
+        test_accuracy
         )
     )
-
+    print(test_accuracy)
+    print(best_acc)
+    print(epoch)
+    print(bootstrap)
     # Save
-    if success / total * 100.0 > best_acc and epoch > bootstrap:
+    if test_accuracy > best_acc and epoch > bootstrap:
         print(u"Saving model...")
-        best_acc = success / total * 100.0
+        best_acc = test_accuracy
         torch.save(model.state_dict(), open('model.pth', 'wb'))
         n_fail = 0
     elif epoch > bootstrap:
