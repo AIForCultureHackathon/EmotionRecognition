@@ -22,8 +22,8 @@ class EmotionClassifier(nn.Module):
         self.conv_layer1 = nn.Conv2d(1, 6, 5)
         self.pool = nn.MaxPool2d(2, 2)
         self.conv_layer2 = nn.Conv2d(6, 16, 5)
-        self.linear_layer1 = nn.Linear(16 * 34 * 34, 120)
-        self.linear_layer2 = nn.Linear(200, 8)
+        self.linear_layer1 = nn.Linear(16 * 34 * 34, 300)
+        self.linear_layer2 = nn.Linear(300, 8)
     # end __init__
 
     # Forward pass
