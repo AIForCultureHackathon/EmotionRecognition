@@ -69,7 +69,6 @@ while True:
     face_locations = face_recognition.face_locations(rgb_frame)
 
     # Label the results
-    face_id = 0
     for (top, right, bottom, left) in face_locations:
         # Face size
         face_size = (right - left, bottom - top)
@@ -101,9 +100,6 @@ while True:
 
         # Shape
         face_image.shape = (1, 150, 150)
-
-        # Save
-        cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
         print(face_image.shape)
         # Transform
         face_tensor = transform(face_image.reshape)
@@ -119,8 +115,6 @@ while True:
             (0, 0, 255),
             2
         )
-
-        face_id += 1
     # end for
 
     # Write the resulting image to the output video file
