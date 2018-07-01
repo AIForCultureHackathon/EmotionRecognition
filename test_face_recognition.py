@@ -133,7 +133,7 @@ while True:
             (face_left, face_top),
             (face_right, face_bottom),
             colors[predicted_emotion],
-            2
+            4
         )
     # end for
 
