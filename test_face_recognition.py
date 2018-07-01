@@ -11,7 +11,6 @@ import os
 parser = argparse.ArgumentParser(u"Face detection")
 parser.add_argument("--movie", type=str, required=True)
 parser.add_argument("--output", type=str, required=True)
-parser.add_argument("--faces-dir", type=str, required=True)
 parser.add_argument("--model", type=str, required=False)
 parser.add_argument("--length", type=int, default=-1)
 parser.add_argument("--fps", type=int, required=True)
@@ -69,25 +68,25 @@ while True:
             biggest_dim = face_size[1]
         # end if
 
+        # Face rectangle
+        face_top = int(face_center[1] - biggest_dim / 2.0)
+        face_bottom = int(face_center[1] + biggest_dim / 2.0)
+        face_left = int(face_center[0] - biggest_dim / 2.0)
+        face_right = int(face_center[0] + biggest_dim / 2.0)
+
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
-        # cv2.circle(frame, (left, top), 10, (0, 0, 255))
         cv2.rectangle(
             frame,
-            (int(face_center[0] - biggest_dim / 2.0), int(face_center[1] - biggest_dim / 2.0)),
-            (int(face_center[0] + biggest_dim / 2.0), int(face_center[1] + biggest_dim / 2.0)),
+            (face_left, face_top),
+            (face_right, face_bottom),
             (0, 0, 255),
             2
         )
 
         # Face
-        # face_image = frame[top:bottom, left:right]
-
-        # Save image
-        # cv2.imwrite(os.path.join(args.faces_dir, "face" + str(index) + ".jpg"), face_image)
-
-        # Next face
-        # index += 1
+        face_image = frame[face_top:face_bottom, face_left:face_right]
+        print(type(face_image))
     # end for
 
     # Write the resulting image to the output video file
