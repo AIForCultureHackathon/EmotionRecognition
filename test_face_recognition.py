@@ -94,7 +94,8 @@ while True:
 
         # Resize to 150x150
         cv2.resize(face_image, (150, 150))
-        cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
+        cv2.imwrite("face" + str(face_id) + " .jpg", cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY))
+        print(cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY).shape)
 
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
