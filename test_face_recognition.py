@@ -13,6 +13,7 @@ parser.add_argument("--movie", type=str, required=True)
 parser.add_argument("--output", type=str, required=True)
 parser.add_argument("--faces-dir", type=str, required=True)
 parser.add_argument("--model", type=str, required=False)
+parser.add_argument("--length", type=int, default=-1)
 args = parser.parse_args()
 
 # Input movie
@@ -89,6 +90,11 @@ while True:
     # Write the resulting image to the output video file
     print("Writing frame {} / {}".format(frame_number, length))
     output_movie.write(frame)
+
+    # Check length
+    if args.length != -1 and frame_number > args.length:
+        break
+    # end if
 # end while
 
 # All done!
