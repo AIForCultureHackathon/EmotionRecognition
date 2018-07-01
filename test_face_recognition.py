@@ -113,7 +113,7 @@ while True:
         face_tensor = face_tensor.view(1, 1, 150, 150)
 
         # Predict emotion
-        predicted = torch.max(model(Variable(face_tensor)).data, 1)
+        _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
         print(predicted)
         print(classes[predicted])
         exit()
