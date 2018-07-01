@@ -101,7 +101,7 @@ while True:
 
         # Save
         cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
-
+        print(face_image.shape)
         # Transform
         face_tensor = transform(face_image)
         print(face_tensor.size())
