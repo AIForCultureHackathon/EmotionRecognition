@@ -124,8 +124,16 @@ while True:
             # Add batch dim
             face_tensor = face_tensor.view(1, 1, 150, 150)
 
+            # Model outputs
+            outputs = model(Variable(face_tensor))
+
+            # Emotion probs
+            emotion_probs = torch.exp(outputs)
+            print(emotion_probs)
+            exit()
+
             # Predict emotion
-            _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
+            _, predicted = torch.max(outputs.data, 1)
             predicted_emotion = classes[predicted[0]]
 
             # Draw a box around the face
