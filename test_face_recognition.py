@@ -99,6 +99,9 @@ while True:
         # Transform
         face_tensor = transform(face_image)
         print(face_tensor.size())
+        print(face_tensor[0, 0, 0])
+        print(face_tensor[1, 0, 0])
+        print(face_tensor[2, 0, 0])
         exit()
 
         # Draw a box around the face
