@@ -137,7 +137,7 @@ while True:
             outputs = model(Variable(face_tensor))
 
             # Emotion probs
-            emotion_probs = torch.exp(outputs)
+            emotion_probs = torch.exp(outputs.data)
             average_probs += emotion_probs
 
             # Predict emotion
