@@ -89,6 +89,7 @@ for epoch in range(10000):
         # Forward
         outputs = model(inputs)
         print(outputs)
+        exit()
         # Loss
         loss = criterion(outputs, labels)
 
