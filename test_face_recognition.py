@@ -58,6 +58,7 @@ while True:
     for (top, right, bottom, left) in face_locations:
         # Face size
         face_size = (right - left, bottom - top)
+        print(face_size)
 
         # Get the center of the face
         face_center = (left + face_size[0], top + face_size[0])
@@ -70,8 +71,8 @@ while True:
         # end if
 
         # Draw a box around the face
-        # cv2.circle(frame, face_center, 5, (0, 0, 255))
-        cv2.circle(frame, (left, top), 10, (0, 0, 255))
+        cv2.circle(frame, face_center, 5, (0, 0, 255))
+        # cv2.circle(frame, (left, top), 10, (0, 0, 255))
         cv2.rectangle(
             frame,
             (int(face_center[0] - biggest_dim / 2.0), int(face_center[1] - biggest_dim / 2.0)),
