@@ -68,10 +68,6 @@ while True:
     # Write the resulting image to the output video file
     print("Writing frame {} / {}".format(frame_number, length))
     output_movie.write(frame)
-
-    if frame_number > 500:
-        break
-    # end if
 # end while
 
 # All done!
