@@ -46,7 +46,7 @@ class EmotionClassifier(nn.Module):
 
         # Max pooling 2
         x = self.pool(x)
-        print(x.size())
+
         x = x.view(-1, 16 * 34 * 34)
 
         # 2 linear layers

@@ -74,8 +74,7 @@ for epoch in range(10000):
     for i, data in enumerate(trainloader, 0):
         # Get the inputs and labels
         inputs, labels = data
-        print(inputs.size())
-        print(labels)
+
         # To variable
         if use_cuda:
             inputs, labels = Variable(inputs.cuda()), Variable(labels.cuda())
@@ -88,8 +87,7 @@ for epoch in range(10000):
 
         # Forward
         outputs = model(inputs)
-        print(outputs)
-        exit()
+
         # Loss
         loss = criterion(outputs, labels)
 
