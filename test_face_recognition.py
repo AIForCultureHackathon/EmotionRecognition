@@ -14,6 +14,9 @@ parser.add_argument("--output", type=str, required=True)
 parser.add_argument("--faces-dir", type=str, required=True)
 parser.add_argument("--model", type=str, required=False)
 parser.add_argument("--length", type=int, default=-1)
+parser.add_argument("--fps", type=int, required=True)
+parser.add_argument("--width", type=int, required=True)
+parser.add_argument("--height", type=int, required=True)
 args = parser.parse_args()
 
 # Input movie
@@ -24,7 +27,7 @@ length = int(input_movie.get(cv2.CAP_PROP_FRAME_COUNT))
 
 # Create an output movie file
 fourcc = cv2.VideoWriter_fourcc(*'mpeg')
-output_movie = cv2.VideoWriter(args.output, fourcc, 30, (640, 480))
+output_movie = cv2.VideoWriter(args.output, fourcc, args.fps, (args.width, args.height))
 
 # Initialize some variables
 face_locations = []
