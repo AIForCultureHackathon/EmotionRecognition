@@ -74,8 +74,7 @@ for epoch in range(10000):
     for i, data in enumerate(trainloader, 0):
         # Get the inputs and labels
         inputs, labels = data
-        print(labels)
-        exit()
+
         # To variable
         if use_cuda:
             inputs, labels = Variable(inputs.cuda()), Variable(labels.cuda())
