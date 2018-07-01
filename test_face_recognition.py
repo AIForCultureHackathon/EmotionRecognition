@@ -99,11 +99,14 @@ while True:
         # Grayscale
         face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
 
+        # Shape
+        face_image.shape = (1, 150, 150)
+
         # Save
         cv2.imwrite("face" + str(face_id) + " .jpg", face_image)
         print(face_image.shape)
         # Transform
-        face_tensor = transform(face_image)
+        face_tensor = transform(face_image.reshape)
         print(face_tensor.size())
         exit()
 
