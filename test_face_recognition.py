@@ -22,7 +22,7 @@ length = int(input_movie.get(cv2.CAP_PROP_FRAME_COUNT))
 
 # Create an output movie file
 fourcc = cv2.VideoWriter_fourcc(*'mpeg')
-output_movie = cv2.VideoWriter(args.output, fourcc, 25, (596, 336))
+output_movie = cv2.VideoWriter(args.output, fourcc, 30, (640, 480))
 
 # Initialize some variables
 face_locations = []
