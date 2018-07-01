@@ -67,6 +67,9 @@ transform = transforms.Compose(
     ]
 )
 
+# List of probs
+probs_timeline = list()
+
 # For each frame
 while True:
     # Grab a single frame of video
@@ -88,9 +91,6 @@ while True:
 
     # How many faces
     n_faces = 0.0
-
-    # List of probs
-    probs_timeline = list()
 
     # Label the results
     for (top, right, bottom, left) in face_locations:
