@@ -83,6 +83,15 @@ while True:
     # Find all the faces and face encodings in the current frame of video
     face_locations = face_recognition.face_locations(rgb_frame)
 
+    # Average probs
+    average_probs = torch.zeros(1, 8)
+
+    # How many faces
+    n_faces = 0.0
+
+    # List of probs
+    probs_timeline = list()
+
     # Label the results
     for (top, right, bottom, left) in face_locations:
         # Face size
@@ -129,8 +138,7 @@ while True:
 
             # Emotion probs
             emotion_probs = torch.exp(outputs)
-            print(emotion_probs)
-            exit()
+            average_probs += emotion_probs
 
             # Predict emotion
             _, predicted = torch.max(outputs.data, 1)
@@ -145,8 +153,30 @@ while True:
                 colors[predicted_emotion],
                 4
             )
+
+            # Plus one face
+            n_faces += 1.0
         # end if
     # end for
+
+    # Average probs
+    average_probs /= n_faces
+
+    # Add to timeline
+    probs_timeline.append(average_probs)
+
+    # Draw emotion timeline
+    x = args.width - 1
+    for t in range(len(probs_timeline)-1, 0, -1):
+        probs_t = probs_timeline[t]
+        # For each emotion
+        for c in range(0, 8):
+            em = classes[c]
+            em_prob = probs_t[0, c]
+            y = args.height - em_prob * 20.0 - 1.0
+            cv2.circle(frame, (x, y), 1, colors[em], thickness=1)
+        # end for
+        x -= 1
 
     # Write the resulting image to the output video file
     print("Writing frame {} / {}".format(frame_number, length))
