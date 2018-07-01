@@ -33,20 +33,28 @@ class EmotionClassifier(nn.Module):
         :param x:
         :return:
         """
-        print(x.size())
+        # Batch size
+        batch_size = x.size(0)
+
+        # Conv layer
         x = self.conv_layer1(x)
-        print(x.size())
         x = F.relu(x)
+
+        # Max pooling
         x = self.pool(x)
-        print(x.size())
+
+        # Conv layer 2
         x = self.conv_layer2(x)
         x = F.relu(x)
-        print(x.size())
+
+        # Max pooling 2
         x = self.pool(x)
-        x = x.view(-1, 16 * 4 * 4)
+        x = x.view(-1, 16 * batch_size * batch_size)
+
+        # 2 linear layers
         x = F.relu(self.linear_layer1(x))
         x = F.relu(self.linear_layer2(x))
-        print(x.size())
+
         return F.log_softmax(x)
     # end forward
 
