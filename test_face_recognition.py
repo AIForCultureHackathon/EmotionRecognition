@@ -71,8 +71,8 @@ while True:
         cv2.circle(frame, face_center, 5, (0, 0, 255))
         cv2.rectangle(
             frame,
-            (face_center[0] - biggest_dim / 2.0, face_center[1] - biggest_dim / 2.0),
-            (face_center[0] + biggest_dim / 2.0, face_center[1] + biggest_dim / 2.0),
+            (int(face_center[0] - biggest_dim / 2.0), int(face_center[1] - biggest_dim / 2.0)),
+            (int(face_center[0] + biggest_dim / 2.0), int(face_center[1] + biggest_dim / 2.0)),
             (0, 0, 255),
             2
         )
