@@ -93,7 +93,7 @@ while True:
         face_image = frame[face_top:face_bottom, face_left:face_right]
 
         # Resize to 150x150
-        cv2.resize(face_image, (150, 150))
+        facE_image = cv2.resize(face_image, (150, 150))
         cv2.imwrite("face" + str(face_id) + " .jpg", cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY))
         print(cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY).shape)
 
