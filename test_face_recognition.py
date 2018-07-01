@@ -107,35 +107,37 @@ while True:
         # Face
         face_image = frame[face_top:face_bottom, face_left:face_right]
 
-        # Resize to 150x150
-        print(face_image.shape)
-        face_image = cv2.resize(face_image, (150, 150))
+        # Check size
+        if face_image.shape[0] > 0 and face_image.shape[1] > 0:
+            # Resize to 150x150
+            face_image = cv2.resize(face_image, (150, 150))
 
-        # Grayscale
-        face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
+            # Grayscale
+            face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
 
-        # Shape
-        face_image.shape = (150, 150, 1)
+            # Shape
+            face_image.shape = (150, 150, 1)
 
-        # Transform
-        face_tensor = transform(face_image)
+            # Transform
+            face_tensor = transform(face_image)
 
-        # Add batch dim
-        face_tensor = face_tensor.view(1, 1, 150, 150)
+            # Add batch dim
+            face_tensor = face_tensor.view(1, 1, 150, 150)
 
-        # Predict emotion
-        _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
-        predicted_emotion = classes[predicted[0]]
+            # Predict emotion
+            _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
+            predicted_emotion = classes[predicted[0]]
 
-        # Draw a box around the face
-        cv2.circle(frame, face_center, 5, (0, 0, 255))
-        cv2.rectangle(
-            frame,
-            (face_left, face_top),
-            (face_right, face_bottom),
-            colors[predicted_emotion],
-            4
-        )
+            # Draw a box around the face
+            cv2.circle(frame, face_center, 5, (0, 0, 255))
+            cv2.rectangle(
+                frame,
+                (face_left, face_top),
+                (face_right, face_bottom),
+                colors[predicted_emotion],
+                4
+            )
+        # end if
     # end for
 
     # Write the resulting image to the output video file
