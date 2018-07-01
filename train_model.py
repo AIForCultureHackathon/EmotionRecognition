@@ -61,7 +61,7 @@ optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
 
 # Nb iterations
 n_iterations = 60
-bootstrap = 10
+bootstrap = 0
 n_fail = 0
 
 # Training !
