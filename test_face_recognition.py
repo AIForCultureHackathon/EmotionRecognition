@@ -99,7 +99,7 @@ while True:
         face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
 
         # Shape
-        face_image.shape = (1, 150, 150)
+        face_image.shape = (150, 150, 1)
         print(face_image.shape)
         # Transform
         face_tensor = transform(face_image)
