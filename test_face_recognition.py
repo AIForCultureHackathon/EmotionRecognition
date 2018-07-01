@@ -175,8 +175,6 @@ while True:
             em_prob = probs_t[0, c]
             y = args.height - int(em_prob * 20.0) - 1
             if x > 0:
-                print(x)
-                print(y)
                 cv2.circle(frame, (x, y), 2, colors[em], thickness=1)
             # end if
         # end for
