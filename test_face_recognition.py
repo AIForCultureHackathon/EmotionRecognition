@@ -178,6 +178,7 @@ while True:
                 cv2.circle(frame, (x, y), 2, colors[em], thickness=1)
             # end if
         # end for
+        print(x)
         x -= 1
     # end for
 
