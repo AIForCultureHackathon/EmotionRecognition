@@ -148,6 +148,7 @@ for epoch in range(10000):
 
     # Save
     if success / total * 100.0 > best_acc and epoch > bootstrap:
+        print(u"Saving model...")
         best_acc = success / total * 100.0
         torch.save(model.state_dict(), open('model.pth', 'wb'))
         n_fail = 0
