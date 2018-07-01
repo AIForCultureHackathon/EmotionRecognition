@@ -102,7 +102,7 @@ while True:
         face_image.shape = (1, 150, 150)
         print(face_image.shape)
         # Transform
-        face_tensor = transform(face_image.reshape)
+        face_tensor = transform(face_image)
         print(face_tensor.size())
         exit()
 
