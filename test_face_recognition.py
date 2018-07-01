@@ -175,10 +175,11 @@ while True:
             em_prob = probs_t[0, c]
             y = args.height - em_prob * 20.0 - 1.0
             if x > 0:
-                cv2.circle(frame, (x, y), 1, colors[em], thickness=1)
+                cv2.circle(frame, (x, y), 2, colors[em], thickness=1)
             # end if
         # end for
         x -= 1
+    # end for
 
     # Write the resulting image to the output video file
     print("Writing frame {} / {}".format(frame_number, length))
