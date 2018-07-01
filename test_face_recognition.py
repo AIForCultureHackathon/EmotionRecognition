@@ -58,10 +58,9 @@ while True:
     for (top, right, bottom, left) in face_locations:
         # Face size
         face_size = (right - left, bottom - top)
-        print(face_size)
 
         # Get the center of the face
-        face_center = (left + face_size[0], top + face_size[0])
+        face_center = (int(left + face_size[0] / 2.0), int(top + face_size[0] / 2.0))
 
         # Biggest dim
         if face_size[0] > face_size[1]:
