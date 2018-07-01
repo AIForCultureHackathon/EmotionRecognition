@@ -12,6 +12,16 @@ import torch
 
 # Classes
 classes = ('neutral', 'happiness', 'surprise', 'anger', 'sadness', 'disgust', 'fear', 'contempt')
+colors = {
+    'neutral': (255, 255, 255),
+    'happiness': (0, 255, 0),
+    'surprise': (0, 0, 255),
+    'anger': (255, 0, 0),
+    'sadness': (255, 255, 0),
+    'disgust': (255, 0, 255),
+    'fear': (0, 0, 0),
+    'contempt': (0, 255, 255)
+}
 
 
 # Arguments
@@ -116,15 +126,13 @@ while True:
         _, predicted = torch.max(model(Variable(face_tensor)).data, 1)
         predicted_emotion = classes[predicted[0]]
 
-        print(predicted_emotion)
-
         # Draw a box around the face
         cv2.circle(frame, face_center, 5, (0, 0, 255))
         cv2.rectangle(
             frame,
             (face_left, face_top),
             (face_right, face_bottom),
-            (0, 0, 255),
+            colors[predicted_emotion],
             2
         )
     # end for
