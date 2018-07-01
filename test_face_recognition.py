@@ -42,7 +42,6 @@ index = 0
 while True:
     # Grab a single frame of video
     ret, frame = input_movie.read()
-    frame_number += 1
 
     # Quit when the input video file ends
     if not ret:
@@ -94,8 +93,12 @@ while True:
     print("Writing frame {} / {}".format(frame_number, length))
     output_movie.write(frame)
 
+    # Frame number
+    frame_number += 1
+
     # Check length
     if args.length != -1 and frame_number > args.length:
+        print(u"The end...")
         break
     # end if
 # end while
