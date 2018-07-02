@@ -8,6 +8,7 @@ from models import EmotionClassifier
 import torchvision.transforms as transforms
 from torch.autograd import Variable
 import torch
+import math
 
 
 # Classes
@@ -170,12 +171,14 @@ while True:
     for t in range(len(probs_timeline)-1, 0, -1):
         probs_t = probs_timeline[t]
         # For each emotion
-        for c in range(0, 8):
+        for c in range(1, 8):
             em = classes[c]
             em_prob = probs_t[0, c]
-            y = args.height - int(em_prob * 150.0) - 1
-            if x > 0:
-                cv2.circle(frame, (x, y), 2, colors[em], thickness=1)
+            if not math.isnan(em_prob):
+                y = args.height - int(em_prob * 150.0) - 1
+                if x > 0:
+                    cv2.circle(frame, (x, y), 2, colors[em], thickness=1)
+                # end if
             # end if
         # end for
         x -= 1
