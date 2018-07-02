@@ -6,7 +6,7 @@
 import torch
 import torchvision.transforms as transforms
 import numpy as np
-import models.EmotionClassifier
+from models import EmotionClassifier
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
@@ -42,7 +42,7 @@ dataiter = iter(trainloader)
 n_batches = len(dataiter)
 
 # Our neural net
-model = models.EmotionClassifier()
+model = EmotionClassifier()
 if use_cuda:
     model.cuda()
 # end if
