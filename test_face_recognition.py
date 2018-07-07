@@ -26,7 +26,7 @@ colors = {
 
 
 # Arguments
-parser = argparse.ArgumentParser(u"Face detection")
+parser = argparse.ArgumentParser(u"Emotion Reaction Measurement Software")
 parser.add_argument("--movie", type=str, required=True)
 parser.add_argument("--output", type=str, required=True)
 parser.add_argument("--model", type=str, required=False)
